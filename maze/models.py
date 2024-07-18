@@ -4,13 +4,30 @@ import random
 
 ### Generates a maze with only one path from any given cell to another
 class Maze():
-  def __init__(self, width, height):
+  def __init__(self, width, height, mazeData = None):
     self.width = width
     self.height = height
     self.cellCount = width * height
     self.sets = DisjointSets(self.cellCount)
     self.graph = MazeGraph(self.cellCount)
-    self.__generate()
+
+    if (mazeData is None):
+      self.__generate()
+    else:
+      self.__loadMazeData(mazeData)
+
+  # Method to get the current maze (for response)
+  def getMaze(self):
+    return self.graph.cellMap()
+  
+  # Method to validate a potential maze state
+  def validateMazeParams(width, height, mazeData = None):
+    if (width < 4 or width > 100):
+      return "Invalid maze width. 4 <= WIDTH <= 100"
+    if (height < 4 or height > 100):
+      return "Invalid maze height. 4 <= HEIGHT <= 100"
+    if (mazeData is not None and len(mazeData) != width * height):
+      return "Size mismath. Maze must be width * height."
 
   # Method to generate the maze
   def __generate(self):
@@ -37,9 +54,9 @@ class Maze():
         if (self.graph.getEdgeCount() == self.cellCount - 1):
           break
 
-  # Method to get the current maze (for response)
-  def getMaze(self):
-    return self.graph.cellMap()
+  # Method to populate a the MazeGraph with an existing maze to be solved
+  def __loadMazeData(self, mazeData):
+    pass
 
   def __swap(self, firstIndex, secondIndex, array):
     firstValue = array[firstIndex]

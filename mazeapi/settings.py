@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,7 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_ALLOW_ALL = False
 
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
 
 CORS_ORIGIN_WHITELIST = (
   'http://localhost:3000',
