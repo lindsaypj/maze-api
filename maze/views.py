@@ -32,6 +32,5 @@ class MazeView(APIView):
     # Initialize maze and solve
     mazeSolver = Maze(width, height, mazeData)
     solvedPath = mazeSolver.solveMaze()
-    print(solvedPath)
     
     return JsonResponse(solvedPath, safe=False)
