@@ -5,6 +5,7 @@ from .models import Maze
 
 class MazeView(APIView):
 
+  ## Generate a maze
   def get(self, request, width, height):
     # Validate request params
     errroMessage = Maze.validateMazeParams(width, height)
@@ -17,6 +18,8 @@ class MazeView(APIView):
       
     return JsonResponse(output, safe=False)
   
+
+  ## Solve a maze
   def post(self, request, width, height):
     # Solve Maze
     mazeData = json.loads(request.data)
@@ -26,8 +29,9 @@ class MazeView(APIView):
     if (errroMessage is not None):
       return HttpResponseBadRequest(errroMessage, status=400)
     
-    # Initialize maze
+    # Initialize maze and solve
     mazeSolver = Maze(width, height, mazeData)
-
-    # Solve maze
-    # Return solved path
+    solvedPath = mazeSolver.solveMaze()
+    print(solvedPath)
+    
+    return JsonResponse(solvedPath, safe=False)

@@ -20,6 +20,10 @@ class Maze():
   def getMaze(self):
     return self.graph.cellMap()
   
+  # Method to solve the maze, returning a path from cell '0' to cell 'cellCount'
+  def solveMaze(self):
+    return self.graph.depthFirstSearch()
+  
   # Method to validate a potential maze state
   def validateMazeParams(width, height, mazeData = None):
     if (width < 4 or width > 100):
@@ -56,7 +60,10 @@ class Maze():
 
   # Method to populate a the MazeGraph with an existing maze to be solved
   def __loadMazeData(self, mazeData):
-    pass
+    for cell, doors in mazeData.items():
+      for door in doors:
+        adjacentCell = self.__getNeighborCell(int(cell), door)
+        self.graph.addEdge(int(cell), adjacentCell)
 
   def __swap(self, firstIndex, secondIndex, array):
     firstValue = array[firstIndex]
@@ -185,7 +192,7 @@ class MazeGraph():
         current = current.next
     return False
 
-  # TODO: THIS WILL PROBABLY BREAK IF MAZE IS NOT SQUARE (e.g. 5x5/45x45/100x100)
+  # NOTE: THIS WILL PROBABLY BREAK IF MAZE IS NOT SQUARE (e.g. 5x5/45x45/100x100)
   def cellMap(self):
     cells = {}
     for key, currentNode in self.adjacencyLists.items():
@@ -206,6 +213,38 @@ class MazeGraph():
           currentNode = currentNode.next
       cells[key] = newCell.getPaths()
     return cells
+
+  def depthFirstSearch(self):
+    traversal = []
+    visited = set()
+    currentCell = 0
+    targetCell = len(self.adjacencyLists) - 1
+
+    # Repeats for each Vertex in traversal
+    while(currentCell != targetCell):
+      # If this is the first visit to the cell, add to visited set
+      if (currentCell not in visited):
+        visited.add(currentCell)
+        traversal.append(currentCell)
+
+      # Traverse neighbors
+      neighborList = self.adjacencyLists[currentCell]
+      while (neighborList is not None ):
+        # Find first non-visited neighbor
+        if (neighborList.vertex not in visited):
+          currentCell = neighborList.vertex
+          break
+        neighborList = neighborList.next
+
+      # Check if neighbor was not found (DEAD END FOUND)
+      if (neighborList is None):
+        # Step back in traversal
+        traversal.pop()
+        currentCell = traversal[len(traversal) - 1]
+
+    traversal.append(currentCell)
+    return traversal
+  
 
   # Subclass of MazeGraph used to identify cells in the graph
   class Node():
