@@ -118,11 +118,15 @@ class Cell():
     SOUTH = 2
     WEST = 3
 
-  def __str__(self):
+  def getPaths(self):
     paths = []
     for wall in range(4):
       if not self.doors[wall]:
         paths.append(wall)
+    return paths
+
+  def __str__(self):
+    paths = self.getPaths()
     return str(paths)
 
 
@@ -183,7 +187,7 @@ class MazeGraph():
               else:
                   newCell.setDoor(Cell.Doors.NORTH)
           currentNode = currentNode.next
-      cells[key] = str(newCell)
+      cells[key] = newCell.getPaths()
     return cells
 
   # Subclass of MazeGraph used to identify cells in the graph
