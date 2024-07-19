@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-@d*!h46s#$qb-**kg01lm=-gt7pv%(4p3&c@jq)!n&0f^)alv&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['18.191.133.226:8000']
 
 
 # Application definition
@@ -53,13 +53,13 @@ MIDDLEWARE = [
 ]
 
 
-CORS_ORIGIN_ALLOW_ALL = False
+# CORS_ORIGIN_ALLOW_ALL = False
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
+# CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
 
-CORS_ORIGIN_WHITELIST = (
-  'http://localhost:3000',
-)
+# CORS_ORIGIN_WHITELIST = (
+#   'http://localhost:3000',
+# )
 
 ROOT_URLCONF = 'mazeapi.urls'
 
