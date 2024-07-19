@@ -77,21 +77,20 @@ class Maze():
     return neighbors
   
   def __getNeighborCell(self, cell, direction):
-    match(direction):
-      case 0: # NORTH
-          northNeighbor = cell - self.width
-          return -1 if northNeighbor < 0 else northNeighbor
-      case 1: # EAST
-          # If (cell + 1) % width == 0, then cell is at the end of a row
-          return -1 if (cell + 1) % self.width == 0 else cell + 1
-      case 2: # SOUTH
-          southNeighbor = cell + self.width
-          return -1 if southNeighbor >= self.cellCount else southNeighbor
-      case 3: # WEST
-          # If cell % width == 0, then cell is at the start of a row
-          return -1 if cell % self.width == 0 else cell - 1
-      case _:
-          return -1
+    if direction == 0: # NORTH
+      northNeighbor = cell - self.width
+      return -1 if northNeighbor < 0 else northNeighbor
+    elif direction == 1: # EAST
+      # If (cell + 1) % width == 0, then cell is at the end of a row
+      return -1 if (cell + 1) % self.width == 0 else cell + 1
+    elif direction == 2: # SOUTH
+      southNeighbor = cell + self.width
+      return -1 if southNeighbor >= self.cellCount else southNeighbor
+    elif direction == 3: # WEST
+      # If cell % width == 0, then cell is at the start of a row
+      return -1 if cell % self.width == 0 else cell - 1
+    else:
+      return -1
 
 
 ### Used to track disjoint parts of the maze durring generation, ensuring result is a spanning tree
