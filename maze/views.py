@@ -29,8 +29,10 @@ class MazeView(APIView):
     if (errroMessage is not None):
       return HttpResponseBadRequest(errroMessage, status=400)
     
-    # Initialize maze and solve
+    # Initialize maze and solve maze
     mazeSolver = Maze(width, height, mazeData)
     solvedPath = mazeSolver.solveMaze()
+    if (len(solvedPath) == 0):
+      return HttpResponseBadRequest("Invalid Maze. Maze not solveable with DFS", status=400)
     
     return JsonResponse(solvedPath, safe=False)

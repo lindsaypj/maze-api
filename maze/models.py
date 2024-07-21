@@ -228,7 +228,7 @@ class MazeGraph():
 
       # Traverse neighbors
       neighborList = self.adjacencyLists[currentCell]
-      while (neighborList is not None ):
+      while (neighborList is not None):
         # Find first non-visited neighbor
         if (neighborList.vertex not in visited):
           currentCell = neighborList.vertex
@@ -239,6 +239,9 @@ class MazeGraph():
       if (neighborList is None):
         # Step back in traversal
         traversal.pop()
+        # Escape if all paths exhausted
+        if (len(traversal) == 0):
+          return []
         currentCell = traversal[len(traversal) - 1]
 
     traversal.append(currentCell)
