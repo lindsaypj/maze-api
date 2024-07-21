@@ -10,7 +10,7 @@
 Generates a random maze of size width/height. Returns Maze object containing each cell in the maze. For each cell, there is an array of directions that can be traversed.
 
 Note:
- - Currently only accepts aspect ratio of 1/1 (Width = height)
+ - Width and height must be between 4 and 100 (inclusive)
  - 0 = North, 1 = East, 2 = South, 3 = West
 ```
    0
@@ -58,7 +58,8 @@ Response:
 Solves a given maze of size width/height. Returns an array of cells to traverse (in order) from start to end of the maze.
 
 Notes:
- - Currently only accepts aspect ratio of 1/1 (Width = height)
+ - Width and height must be between 4 and 100 (inclusive)
+ - Maze data must match the given width/height
  - Assumes starting point of cell 0 (top left) to cell n (bottom right)
 
 Example:
@@ -102,5 +103,4 @@ Response:
 <img src="https://github.com/user-attachments/assets/1c5a775c-fbe1-4f89-95b9-d72bf85bbf2b" width="250" height="250" alt="Example Five by five maze fully rendered with solved path" />
 
 ### Possible additions
- - Generate and solve mazes that are any aspect ratio
  - Modify POST `http://18.191.133.226:8000/maze/5x5/` to accept custom start and end locations

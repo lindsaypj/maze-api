@@ -191,7 +191,7 @@ class MazeGraph():
         current = current.next
     return False
 
-  # NOTE: THIS WILL PROBABLY BREAK IF MAZE IS NOT SQUARE (e.g. 5x5/45x45/100x100)
+  # Method to create an exportable list of cells and their traversable directions
   def cellMap(self):
     cells = {}
     for key, currentNode in self.adjacencyLists.items():
