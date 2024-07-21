@@ -52,6 +52,7 @@ Response:
   "24": [0, 3]
 }
 ```
+<img src="https://github.com/user-attachments/assets/d73b64dd-bb7f-48af-9a0d-b79d15673c4b" width="250" height="250" alt="Example five by five maze fully rendered" />
 
 ### POST /maze/\<width>x\<height>/
 Solves a given maze of size width/height. Returns an array of cells to traverse (in order) from start to end of the maze.
@@ -98,6 +99,7 @@ Response:
 ```
 [0, 1, 6, 11, 10, 15, 16, 17, 22, 23, 24]
 ```
+<img src="https://github.com/user-attachments/assets/1c5a775c-fbe1-4f89-95b9-d72bf85bbf2b" width="250" height="250" alt="Example Five by five maze fully rendered with solved path" />
 
 ### Possible additions
  - Generate and solve mazes that are any aspect ratio
