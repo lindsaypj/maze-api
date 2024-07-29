@@ -1,10 +1,5 @@
 # Maze API
 
-### Deployment
-[http://18.191.133.226:8000/](http://18.191.133.226:8000/)
-
-[Demo Client Application](http://maze-client.s3-website.us-east-2.amazonaws.com/)
-
 ## Endpoints
 ### GET /maze/\<width>x\<height>/
 Generates a random maze of size width/height. Returns Maze object containing each cell in the maze. For each cell, there is an array of directions that can be traversed.
